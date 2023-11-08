@@ -18,6 +18,7 @@ export class ProductsService {
 
     async addProduct(productData: AddProductDto): Promise<ProductDocument> {
         const newProduct = await this.productModel.create(productData);
+        await newProduct.populate('category');
         return newProduct;
     }
 
